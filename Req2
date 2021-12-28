@@ -1,41 +1,59 @@
-using System;  
+using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 
-public class PasswordValidation
+namespace ConsoleApp1
 {
-	public static void Main()
-	{
-		bool isValid = validatePassword();
-		if (isValid)
-		{
-			Console.WriteLine("Password is valid");	
-		}
-		else
-		{
-			Console.WriteLine("Password is invalid");	
-		}
-	}
-	public static bool validatePassword()
-	{
-		Console.WriteLine("Enter the password to be validated");
-		const int minLength = 7;
-		string password = Console.ReadLine();
-		if (password.Length > minLength)
-		{
-			if (password.Any(Char.IsWhiteSpace))
-			{
-				return false;	
-			}
-			if(password.Any(Char.IsUpper) && password.Any(Char.IsLower) && password.Any(Char.IsNumber) && password.Any( ch => ! Char.IsLetterOrDigit( ch )))
-			{
-				return true;
-			}
-			Console.WriteLine("statement failed");
-			return false;
-		}
-		else
-		{
-			return false;
-		}
-	}
+    class Program
+    {
+             
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter the password to be validated");
+            string password = Console.ReadLine();
+            
+            if(ValidatePassword(password))
+            {
+                Console.WriteLine("Password is Valid");
+            }
+            else
+            {
+                Console.WriteLine("Password is invalid");
+            }
+        }
+
+        private static bool ValidatePassword(string password)
+        {
+            bool Num = false;
+            bool Cap = false;
+            bool Small = false;
+            bool Spe=false;
+            bool Space = false;
+            char ch;
+            if(password.Any(char.IsWhiteSpace))
+            return false;
+            
+
+            if (password.Length < 7)
+                return false;
+            for (int i=0;i<password.Length;i++)
+            {
+                ch = password[i];
+                if (char.IsDigit(ch))
+                    Num = true;
+                else if (char.IsLower(ch))
+                    Small = true;
+                else if (char.IsUpper(ch))
+                    Cap = true;
+                else if (!char.IsLetterOrDigit(ch))
+                    Spe = true;
+                /*else if (!char.IsWhiteSpace(ch))
+                    Space = true;*/
+                if (Num && Small && Cap && Spe)
+                    return true;
+            }
+            return false;
+
+        }
+    }
 }
