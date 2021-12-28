@@ -1,5 +1,4 @@
 using System;
-
 namespace Req4
 {
     class Program
@@ -8,15 +7,13 @@ namespace Req4
         static void Main(string[] args)
         {
             int noOfLikes;
-            string storyDetails, authourName;
+            string storyDetails, authorName;
             Console.WriteLine("Enter the no of story:");
             noOfStory = Convert.ToInt32(Console.ReadLine());
-
+            
             StoryBo storyBo = new StoryBo();
             Story[] storyDetailsArray = new Story[noOfStory];
             Story[] findStoryList = new Story[] { };
-
-
 
             for (int i = 0; i < noOfStory; i++)
             {
@@ -35,9 +32,9 @@ namespace Req4
             switch (choice)
             {
                 case 1:
-                    Console.WriteLine("Enter The Authour Name:");
-                    authourName = Console.ReadLine().Trim();
-                    Console.WriteLine("The Authour {0} :", authourName);
+                    Console.WriteLine("Enter The Author Name:");
+                    authorName = Console.ReadLine().Trim();
+                    Console.WriteLine("The Authour {0} :", authorName);
                     findStoryList = storyBo.findStoryByAuthor(storyDetailsArray, authourName);
                     break;
                 case 2:
