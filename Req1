@@ -1,6 +1,7 @@
 using System;
 namespace Project01 
-{class User
+{
+class User
     {
         //fields
         private string username;
